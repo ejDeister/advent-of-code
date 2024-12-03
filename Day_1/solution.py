@@ -1,25 +1,13 @@
-def split_nums(given: str):
-    for pair in given:            
-        num1, num2 = 0, 0
-        i = 0
-        while pair[i] != " ":
-            i += 1
-        num1 = pair[0:i]
-
-        while pair[i] == " ":
-            i += 1
-        num2 = pair[i:]
-        
-        distance1 = abs(int(num1)-int(num2))
-        print('dist:', distance1, 'nums:', num1, num2)
-
-        yield distance1
-
-total = 0
-
-with open("advent-of-code\Day_1\input.txt") as input_file:
-    for distance in split_nums(input_file):
-        total += distance
-    print(total)
-
+with open("advent-of-code\\Day_1\\input.txt", encoding="utf-8") as input_file:
+    TOTAL = 0
+    nums1, nums2 = [], []
+    for line in input_file:
+        num1, num2 = line.split()
+        nums1.append(num1)
+        nums2.append(num2)
+    nums1.sort()
+    nums2.sort()
+    for num1, num2 in zip(nums1, nums2):
+        TOTAL += abs(int(num1)-int(num2))
+    print(TOTAL)
 
